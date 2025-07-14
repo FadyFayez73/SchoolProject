@@ -1,4 +1,4 @@
-using Core;
+﻿using Core;
 using Services;
 using Infrastructure;
 
@@ -36,9 +36,20 @@ if (app.Environment.IsDevelopment())
 
 using (var scope = app.Services.CreateScope())
 {
-    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    db.Database.Migrate();
+    try
+    {
+        var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+        Console.WriteLine("⏳ Starting DB Migration...");
+        db.Database.Migrate();
+        Console.WriteLine("✅ Migration Applied.");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine("❌ Migration failed:");
+        Console.WriteLine(ex.Message);
+    }
 }
+
 
 app.UseHttpsRedirection();
 
