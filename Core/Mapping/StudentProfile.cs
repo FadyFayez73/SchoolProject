@@ -23,6 +23,7 @@ namespace Core.Mapping
             //))
             //.ReverseMap();
             CreateMap<Student, UpdateStudentDto>().ReverseMap();
+            CreateMap<Student, CreateStudentDto>().ReverseMap();
         }
     }
 }
