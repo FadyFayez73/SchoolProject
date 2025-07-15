@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Core.Features.Departments.Queries.Models
 {
-    public class CreateDepartmentQuery : IRequest<(bool, Guid)>
+    public class CreateDepartmentCommand : IRequest<(bool, Guid)>
     {
-        public CreateDepartmentQuery(CreateDepartmentDto createDepartmentDto)
+        public CreateDepartmentCommand(CreateDepartmentDto createDepartmentDto)
         {
             CreateDepartmentDto = createDepartmentDto;
         }

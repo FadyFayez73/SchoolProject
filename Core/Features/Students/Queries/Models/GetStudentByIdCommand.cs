@@ -1,4 +1,4 @@
-﻿using Core.Dtos.Student;
+using Core.Dtos.Student;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -6,10 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Features.Students.Queries.Modles
+namespace Core.Features.Students.Queries.Models
 {
-    public class GetStudentByIdQuery : IRequest<StudentDto>
+    public class GetStudentByIdCommand : IRequest<StudentDto>
     {
         public Guid Id { get; set; }
     }
-}
+} 

@@ -11,18 +11,18 @@ using System.Threading.Tasks;
 
 namespace Core.Features.Departments.Queries.Handlers
 {
-    public class UpdateDepartmentHandler : IRequestHandler<UpdateDepartmentQuery, bool>
+    public class UpdateDepartmentCommandHandler : IRequestHandler<UpdateDepartmentCommand, bool>
     {
         private readonly IDepartmentServices _departmentServices;
         private readonly IMapper _mapper;
 
-        public UpdateDepartmentHandler(IDepartmentServices departmentServices, IMapper mapper)
+        public UpdateDepartmentCommandHandler(IDepartmentServices departmentServices, IMapper mapper)
         {
             _departmentServices = departmentServices;
             _mapper = mapper;
         }
 
-        public async Task<bool> Handle(UpdateDepartmentQuery request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(UpdateDepartmentCommand request, CancellationToken cancellationToken)
         {
             var department = _mapper.Map<Department>(request.UpdateDepartmentDto);
             return await _departmentServices.UpdateAsync(department);

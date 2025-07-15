@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Features.Students.Queries.Modles
+namespace Core.Features.Students.Queries.Models
 {
-    public class DeleteStudentQuery : IRequest<bool>
+    public class DeleteStudentCommand : IRequest<bool>
     {
-        public DeleteStudentQuery(Guid id)
+        public DeleteStudentCommand(Guid id)
         {
             this.StudID = id;
         }

@@ -10,16 +10,16 @@ using System.Threading.Tasks;
 
 namespace Core.Features.Departments.Queries.Handlers
 {
-    public class DeleteDepartmentHandler : IRequestHandler<DeleteDepartmentQuery, bool>
+    public class DeleteDepartmentCommandHandler : IRequestHandler<DeleteDepartmentCommand, bool>
     {
         private readonly IDepartmentServices _departmentServices;
 
-        public DeleteDepartmentHandler(IDepartmentServices departmentServices)
+        public DeleteDepartmentCommandHandler(IDepartmentServices departmentServices)
         {
             _departmentServices = departmentServices;
         }
 
-        public async Task<bool> Handle(DeleteDepartmentQuery request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(DeleteDepartmentCommand request, CancellationToken cancellationToken)
         {
             return await _departmentServices.DeleteAsync(request.Id);
         }

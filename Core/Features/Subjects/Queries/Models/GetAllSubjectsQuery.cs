@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Core.Features.Subjects.Queries.Models
 {
-    public class GetAllSubjectsQuery : IRequest<IEnumerable<SubjectDto>>
+    public class GetAllSubjectsCommand : IRequest<IEnumerable<SubjectDto>>
     {
     }
 }

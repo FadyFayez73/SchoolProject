@@ -14,18 +14,18 @@ using System.Threading.Tasks;
 
 namespace Core.Features.Subjects.Queries.Handlers
 {
-    public class CreateSubjectHandler : IRequestHandler<CreateSubjectQuery, (bool, Guid)>
+    public class CreateSubjectCommandHandler : IRequestHandler<CreateSubjectCommand, (bool, Guid)>
     {
         private readonly ISubjectServices _subjectServices;
         private readonly IMapper _mapper;
 
-        public CreateSubjectHandler(ISubjectServices subjectServices, IMapper mapper)
+        public CreateSubjectCommandHandler(ISubjectServices subjectServices, IMapper mapper)
         {
             _subjectServices = subjectServices;
             _mapper = mapper;
         }
 
-        public async Task<(bool, Guid)> Handle(CreateSubjectQuery request, CancellationToken cancellationToken)
+        public async Task<(bool, Guid)> Handle(CreateSubjectCommand request, CancellationToken cancellationToken)
         {
             var subject = _mapper.Map<Subject>(request.CreateSubjectDto);
             return await _subjectServices.AddAsync(subject);

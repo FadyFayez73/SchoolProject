@@ -11,16 +11,16 @@ using System.Threading.Tasks;
 
 namespace Core.Features.Subjects.Queries.Handlers
 {
-    public class DeleteSubjectHandler : IRequestHandler<DeleteSubjectQuery, bool>
+    public class DeleteSubjectCommandHandler : IRequestHandler<DeleteSubjectCommand, bool>
     {
         private readonly ISubjectServices _subjectServices;
 
-        public DeleteSubjectHandler(ISubjectServices subjectServices)
+        public DeleteSubjectCommandHandler(ISubjectServices subjectServices)
         {
             _subjectServices = subjectServices;
         }
 
-        public async Task<bool> Handle(DeleteSubjectQuery request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(DeleteSubjectCommand request, CancellationToken cancellationToken)
         {
             return await _subjectServices.DeleteAsync(request.Id);
         }

@@ -1,7 +1,7 @@
 ﻿using Core.Dtos.Department;
 using Core.Dtos.Departments;
 using Core.Features.Departments.Queries.Models;
-using Core.Features.Students.Queries.Modles;
+using Core.Features.Students.Queries.Models;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -22,14 +22,14 @@ namespace API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllDepartments()
         {
-            var result = await _mediator.Send(new GetAllDepartmentsQuery());
+            var result = await _mediator.Send(new GetAllDepartmentsCommand());
             return Ok(result);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetDepartmentById(Guid id)
         {
-            var result = await _mediator.Send(new GetDepartmentByIdQuery(id));
+            var result = await _mediator.Send(new GetDepartmentByIdCommand(id));
             if (result == null)
             {
                 return NotFound();
@@ -41,7 +41,7 @@ namespace API.Controllers
         [HttpGet("/{id}")]
         public async Task<IActionResult> GetDepartmentByIdAsync([FromQuery] Guid id)
         {
-            var result = await _mediator.Send(new GetDepartmentByIdQuery(id));
+            var result = await _mediator.Send(new GetDepartmentByIdCommand(id));
             if (result == null)
             {
                 return NotFound();
@@ -56,7 +56,7 @@ namespace API.Controllers
             {
                 return BadRequest("Student data is null");
             }
-            var (success, id) = await _mediator.Send(new CreateDepartmentQuery(createDepartmentDto));
+            var (success, id) = await _mediator.Send(new CreateDepartmentCommand(createDepartmentDto));
             if (!success)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error adding student");
@@ -71,7 +71,7 @@ namespace API.Controllers
             {
                 return BadRequest("Department data is null");
             }
-            var success = await _mediator.Send(new UpdateDepartmentQuery(updateDepartmentDto));
+            var success = await _mediator.Send(new UpdateDepartmentCommand(updateDepartmentDto));
             if (!success)
             {
                 return StatusCode(StatusCodes.Status304NotModified, "subject Not Updated");
@@ -82,7 +82,7 @@ namespace API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            var success = await _mediator.Send(new DeleteDepartmentQuery(id));
+            var success = await _mediator.Send(new DeleteDepartmentCommand(id));
             if (!success)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error deleting department");
