@@ -34,23 +34,6 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
-using (var scope = app.Services.CreateScope())
-{
-    try
-    {
-        var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-        Console.WriteLine("⏳ Starting DB Migration...");
-        db.Database.Migrate();
-        Console.WriteLine("✅ Migration Applied.");
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine("❌ Migration failed:");
-        Console.WriteLine(ex.Message);
-    }
-}
-
-
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
