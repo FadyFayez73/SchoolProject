@@ -14,6 +14,9 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
+Console.WriteLine("DB Connection: " + builder.Configuration.GetConnectionString("DefaultConnection"));
+
+
 // DbContext configuration
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));

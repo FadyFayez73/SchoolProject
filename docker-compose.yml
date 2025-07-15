@@ -9,5 +9,5 @@ services:
     ports:
       - "5000:8080"
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__DefaultConnection="Host=ep-little-bread-a98ff49j-pooler.gwc.azure.neon.tech; Database=school-db; Username=neondb_owner; Password=npg_HILmMWYe07fN; SSL Mode=VerifyFull; Channel Binding=Require;"
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__DefaultConnection: Host=ep-little-bread-a98ff49j-pooler.gwc.azure.neon.tech;Port=5432;Database=school-db;Username=neondb_owner;Password=npg_HILmMWYe07fN;SslMode=VerifyFull;TrustServerCertificate=true
