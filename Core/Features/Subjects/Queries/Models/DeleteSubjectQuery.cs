@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Core.Features.Subjects.Queries.Models
 {
-    public class DeleteSubjectQuery : IRequest<bool>
+    public class DeleteSubjectCommand : IRequest<bool>
     {
-        public DeleteSubjectQuery(Guid id)
+        public DeleteSubjectCommand(Guid id)
         {
             Id = id;
         }

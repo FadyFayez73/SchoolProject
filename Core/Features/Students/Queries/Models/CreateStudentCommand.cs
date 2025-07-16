@@ -6,11 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Features.Students.Queries.Modles
+namespace Core.Features.Students.Queries.Models
 {
-    public class CreateStudentQuery : IRequest<(bool, Guid)>
+    public class CreateStudentCommand : IRequest<(bool, Guid)>
     {
-        public CreateStudentQuery(CreateStudentDto createStudentDto)
+        public CreateStudentCommand(CreateStudentDto createStudentDto)
         {
             CreateStudentDto = createStudentDto;
         }

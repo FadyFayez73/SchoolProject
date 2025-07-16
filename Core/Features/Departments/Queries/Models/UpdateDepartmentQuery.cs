@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Core.Features.Departments.Queries.Models
 {
-    public class UpdateDepartmentQuery : IRequest<bool>
+    public class UpdateDepartmentCommand : IRequest<bool>
     {
-        public UpdateDepartmentQuery(UpdateDepartmentDto updateDepartmentDto)
+        public UpdateDepartmentCommand(UpdateDepartmentDto updateDepartmentDto)
         {
             UpdateDepartmentDto = updateDepartmentDto;
         }

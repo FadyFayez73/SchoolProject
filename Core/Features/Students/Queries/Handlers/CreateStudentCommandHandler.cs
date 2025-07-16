@@ -1,5 +1,5 @@
-﻿using AutoMapper;
-using Core.Features.Students.Queries.Modles;
+using AutoMapper;
+using Core.Features.Students.Queries.Models;
 using Domain.Entities;
 using MediatR;
 using Services.Contracts;
@@ -11,21 +11,21 @@ using System.Threading.Tasks;
 
 namespace Core.Features.Students.Queries.Handlers
 {
-    public class CreateStudentHandler : IRequestHandler<CreateStudentQuery, (bool, Guid)>
+    public class CreateStudentCommandHandler : IRequestHandler<CreateStudentCommand, (bool, Guid)>
     {
         private readonly IStudentServices _studentServices;
         private readonly IMapper _mapper;
 
-        public CreateStudentHandler(IStudentServices studentServices, IMapper mapper)
+        public CreateStudentCommandHandler(IStudentServices studentServices, IMapper mapper)
         {
             _studentServices = studentServices;
             _mapper = mapper;
         }
 
-        public async Task<(bool, Guid)> Handle(CreateStudentQuery request, CancellationToken cancellationToken)
+        public async Task<(bool, Guid)> Handle(CreateStudentCommand request, CancellationToken cancellationToken)
         {
             var student = _mapper.Map<Student>(request.CreateStudentDto);
             return await _studentServices.AddAsync(student);
         }
     }
-}
+} 

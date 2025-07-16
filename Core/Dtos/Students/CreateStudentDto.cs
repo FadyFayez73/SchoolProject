@@ -12,6 +12,5 @@ namespace Core.Dtos.Student
         public string Address { get; set; }
         public string Phone { get; set; }
         public Guid? DepartmentID { get; set; }
-        public List<Guid>? SubjectIDs { get; set; }
     }
 }

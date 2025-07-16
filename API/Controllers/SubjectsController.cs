@@ -19,14 +19,14 @@ namespace API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllSubjects()
         {
-            var result = await _mediator.Send(new GetAllSubjectsQuery());
+            var result = await _mediator.Send(new GetAllSubjectsCommand());
             return Ok(result);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetSubjectById(Guid id)
         {
-            var result = await _mediator.Send(new GetSubjectByIdQuery(id));
+            var result = await _mediator.Send(new GetSubjectByIdCommand(id));
             if (result == null)
             {
                 return NotFound();
@@ -37,7 +37,7 @@ namespace API.Controllers
         [HttpGet("id")]
         public async Task<IActionResult> GetSubjectByIdAsync([FromQuery] Guid id)
         {
-            var result = await _mediator.Send(new GetSubjectByIdQuery(id));
+            var result = await _mediator.Send(new GetSubjectByIdCommand(id));
             if (result == null)
             {
                 return NotFound();
@@ -52,7 +52,7 @@ namespace API.Controllers
             {
                 return BadRequest("Subject data is null");
             }
-            var (success, id) = await _mediator.Send(new CreateSubjectQuery(createSubjectDto));
+            var (success, id) = await _mediator.Send(new CreateSubjectCommand(createSubjectDto));
             if (!success)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error adding subject");
@@ -67,7 +67,7 @@ namespace API.Controllers
             {
                 return BadRequest("Subject data is null");
             }
-            var success = await _mediator.Send(new UpdateSubjectQuery(updateSubjectDto));
+            var success = await _mediator.Send(new UpdateSubjectCommand(updateSubjectDto));
             if (!success)
             {
                 return StatusCode(StatusCodes.Status304NotModified, "subject Not Updated");
@@ -78,7 +78,7 @@ namespace API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            var success = await _mediator.Send(new DeleteSubjectQuery(id));
+            var success = await _mediator.Send(new DeleteSubjectCommand(id));
             if (!success)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error deleting subject");

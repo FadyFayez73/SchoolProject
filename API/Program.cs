@@ -14,6 +14,9 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
+Console.WriteLine("DB Connection: " + builder.Configuration.GetConnectionString("DefaultConnection"));
+
+
 // DbContext configuration
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -33,23 +36,6 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
-
-using (var scope = app.Services.CreateScope())
-{
-    try
-    {
-        var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-        Console.WriteLine("⏳ Starting DB Migration...");
-        db.Database.Migrate();
-        Console.WriteLine("✅ Migration Applied.");
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine("❌ Migration failed:");
-        Console.WriteLine(ex.Message);
-    }
-}
-
 
 app.UseHttpsRedirection();
 

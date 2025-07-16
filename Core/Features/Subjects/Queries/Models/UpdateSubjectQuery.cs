@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Core.Features.Subjects.Queries.Models
 {
-    public class UpdateSubjectQuery : IRequest<bool>
+    public class UpdateSubjectCommand : IRequest<bool>
     {
-        public UpdateSubjectQuery(UpdateSubjectDto updateSubjectDto) 
+        public UpdateSubjectCommand(UpdateSubjectDto updateSubjectDto) 
         {
             UpdateSubjectDto = updateSubjectDto;
         }

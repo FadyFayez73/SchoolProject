@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Core.Features.Departments.Queries.Models
 {
-    public class GetDepartmentByIdQuery : IRequest<DepartmentDto>
+    public class GetDepartmentByIdCommand : IRequest<DepartmentDto>
     {
-        public GetDepartmentByIdQuery(Guid departmentID)
+        public GetDepartmentByIdCommand(Guid departmentID)
         {
             DepartmentID = departmentID;
         }

@@ -21,16 +21,12 @@ namespace Infrastructure.Repositories
         {
             student.StudID = Guid.NewGuid();
             _context.Students.Add(student);
-            var result = _context.SaveChangesAsync();
+            var result = await _context.SaveChangesAsync();
 
-            return await result.ContinueWith(task =>
-            {
-                if (task.Result > 0)
-                {
-                    return (true, student.StudID);
-                }
+            if(result > 0)
+                return (true, student.StudID);
+            else
                 return (false, Guid.Empty);
-            });
         }
 
         public async Task<bool> DeleteStudentAsync(Guid id)

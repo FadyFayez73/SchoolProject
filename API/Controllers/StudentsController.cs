@@ -4,7 +4,7 @@ using Services.Services;
 using Core.Dtos.Student;
 using Core.Features.Students.Queries.Handlers;
 using MediatR;
-using Core.Features.Students.Queries.Modles;
+using Core.Features.Students.Queries.Models;
 
 namespace API.Controllers
 {
@@ -21,14 +21,14 @@ namespace API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var students = await _mediator.Send(new GetAllStudentsQuery());
+            var students = await _mediator.Send(new GetAllStudentsCommand());
             return Ok(students.ToList());
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(Guid id)
         {
-            var student = await _mediator.Send(new GetStudentByIdQuery() { Id = id });
+            var student = await _mediator.Send(new GetStudentByIdCommand() { Id = id });
             if (student == null)
             {
                 return NotFound();
@@ -39,7 +39,7 @@ namespace API.Controllers
         [HttpGet("api/Students")]
         public async Task<IActionResult> GetByIdAsync([FromQuery] Guid id)
         {
-            var student = await _mediator.Send(new GetStudentByIdQuery() { Id = id });
+            var student = await _mediator.Send(new GetStudentByIdCommand() { Id = id });
             if (student == null)
             {
                 return NotFound();
@@ -54,7 +54,7 @@ namespace API.Controllers
             {
                 return BadRequest("Student data is null");
             }
-            var (success, id) = await _mediator.Send(new CreateStudentQuery(createStudentDto));
+            var (success, id) = await _mediator.Send(new CreateStudentCommand(createStudentDto));
             if (!success)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error adding student");
@@ -69,7 +69,7 @@ namespace API.Controllers
             {
                 return BadRequest("Student data is null");
             }
-            var success = await _mediator.Send(new UpdateStudentQuery(updateStudentDto));
+            var success = await _mediator.Send(new UpdateStudentCommand(updateStudentDto));
             if (!success)
             {
                 return StatusCode(StatusCodes.Status304NotModified, "subject Not Updated");
@@ -80,7 +80,7 @@ namespace API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            var success = await _mediator.Send(new DeleteStudentQuery(id));
+            var success = await _mediator.Send(new DeleteStudentCommand(id));
             if (!success)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error deleting student");

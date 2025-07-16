@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Core.Features.Departments.Queries.Models
 {
-    public class GetAllDepartmentsQuery : IRequest<IEnumerable<DepartmentDto>>
+    public class GetAllDepartmentsCommand : IRequest<IEnumerable<DepartmentDto>>
     {
 
     }

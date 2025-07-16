@@ -1,4 +1,4 @@
-﻿using Core.Dtos.Student;
+using Core.Dtos.Student;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -6,15 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Features.Students.Queries.Modles
+namespace Core.Features.Students.Queries.Models
 {
-    public class UpdateStudentQuery : IRequest<bool>
+    public class UpdateStudentCommand : IRequest<bool>
     {
-        public UpdateStudentQuery(UpdateStudentDto updateStudentDto) 
+        public UpdateStudentCommand(UpdateStudentDto updateStudentDto) 
         {
             this.UpdateStudentDto = updateStudentDto;
         }
 
         public UpdateStudentDto? UpdateStudentDto { get; set; }
     }
-}
+} 

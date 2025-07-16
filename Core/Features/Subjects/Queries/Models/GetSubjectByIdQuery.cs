@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Core.Features.Subjects.Queries.Models
 {
-    public class GetSubjectByIdQuery : IRequest<SubjectDto>
+    public class GetSubjectByIdCommand : IRequest<SubjectDto>
     {
-        public GetSubjectByIdQuery(Guid id)
+        public GetSubjectByIdCommand(Guid id)
         {
             Id = id;
         }

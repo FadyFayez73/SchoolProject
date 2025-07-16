@@ -11,16 +11,16 @@ using System.Threading.Tasks;
 
 namespace Core.Features.Departments.Queries.Handlers
 {
-    public class GetDepartmentByIdHandler : IRequestHandler<GetDepartmentByIdQuery, DepartmentDto>
+    public class GetDepartmentByIdCommandHandler : IRequestHandler<GetDepartmentByIdCommand, DepartmentDto>
     {
         private readonly IDepartmentServices _departmentServices;
         private readonly IMapper _mapper;
-        public GetDepartmentByIdHandler(IDepartmentServices departmentServices, IMapper mapper)
+        public GetDepartmentByIdCommandHandler(IDepartmentServices departmentServices, IMapper mapper)
         {
             _departmentServices = departmentServices;
             _mapper = mapper;
         }
-        public async Task<DepartmentDto> Handle(GetDepartmentByIdQuery request, CancellationToken cancellationToken)
+        public async Task<DepartmentDto> Handle(GetDepartmentByIdCommand request, CancellationToken cancellationToken)
         {
             return _mapper.Map<DepartmentDto>(await _departmentServices
                 .GetDepartmentByIdAsync(request.DepartmentID));
